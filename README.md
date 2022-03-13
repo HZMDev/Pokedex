@@ -5,6 +5,9 @@ Cuenta con tres apartados, la Pokedex completa, la Informacion sobre Pokemon y l
 
 Desarrollada por Eduardo Delgado a Marzo de 2022.
 
+```
+Min SDK 23
+```
 - Pokedex General
                                                     
 ![](Imagenes/Pokedex-Main.png)
