@@ -5,10 +5,15 @@ Cuenta con tres apartados, la Pokedex completa, la Informacion sobre Pokemon y l
 
 Desarrollada por Eduardo Delgado a Marzo de 2022.
 
-Pokedex Completa
+- Pokedex General
+                                                    
+![](Imagenes/Pokedex-Main.png)
+![](Imagenes/Pokedex-Main2.png)
+                       
+- Informacion Detallada 
+                                          
+![](Imagenes/PokedexInfoGeneral.png)
 
-
-Informacion del Pokemon
-
-
-Stats de combate del Pokemon
+- Stats de Combate
+                                     
+![](Imagenes/PokedexStats.png)
