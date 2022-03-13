@@ -1,3 +1,5 @@
+[![activo](https://img.shields.io/badge/ACTIVO-ON-brightgreen)]()
+
 # Pokedex
 Aplicacion de Android que simula el comportamiento de una Pokedex, ofreciendo datos y estadísticas sobre los Pokemon.
 
