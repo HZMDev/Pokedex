@@ -5,6 +5,8 @@ Aplicacion de Android que simula el comportamiento de una Pokedex, ofreciendo da
 
 Cuenta con tres apartados, la Pokedex completa, la Informacion sobre Pokemon y los Stats de combate del mismo (imágenes más abajo).
 
+Los datos se obtienen mediante una conexion con la API REST de Pokemon: pokeapi.co
+
 Desarrollada por Eduardo Delgado a Marzo de 2022.
 
 ```
