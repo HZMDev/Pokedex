@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pokedex.Modelos_JSON.Pokemon;
@@ -21,10 +22,12 @@ public class MainActivity extends AppCompatActivity{
 
     private RecyclerView recycler;
     private LinkedList<Pokemon> pokemons;
-    private Button btnSiguiente, btnAnterior;
+    private Button btnSiguiente, btnAnterior, btnQuitar, btnBuscar;
     private Pokemons pokemonsAPI;
     private ObtenerPokemonsAsyncTask tareaPokemons;
     private View.OnClickListener listener;
+
+    private EditText etAlturaPokemon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,12 +113,50 @@ public class MainActivity extends AppCompatActivity{
                 btnSiguiente.setVisibility(View.VISIBLE);
             }
         });
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Compruebo que el edit text del filtro no este vacio
+                if(etAlturaPokemon.getText().toString().equalsIgnoreCase(""))
+                {
+                    return;
+                }
+
+                //Busco por nombre de pokemon y lo cargo
+                AdapterDatos adapterDatos = new AdapterDatos(buscarPokemon(etAlturaPokemon.getText().toString()));
+
+                adapterDatos.setOnClickListener(listener);
+
+                recycler.setAdapter(adapterDatos);
+
+                btnSiguiente.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        btnQuitar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                etAlturaPokemon.setText("");
+
+                AdapterDatos adapterDatos = new AdapterDatos(pokemons);
+
+                adapterDatos.setOnClickListener(listener);
+
+                recycler.setAdapter(adapterDatos);
+
+                btnSiguiente.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private void inicializarComponentes() {
         recycler = findViewById(R.id.recycler);
         btnSiguiente = findViewById(R.id.btnSiguiente);
         btnAnterior = findViewById(R.id.btnAnterior);
+        btnQuitar = findViewById(R.id.btnQuitar);
+        btnBuscar = findViewById(R.id.btnBuscar);
+        etAlturaPokemon = findViewById(R.id.txtAlturaPokemon);
 
         pokemons = new LinkedList<>();
         pokemonsAPI = new Pokemons();
@@ -130,6 +171,20 @@ public class MainActivity extends AppCompatActivity{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private LinkedList<Pokemon> buscarPokemon(String alturaPoke){
+        LinkedList<Pokemon> pokemonsNombre = new LinkedList<>();
+
+        alturaPoke = alturaPoke.toLowerCase();
+
+        for (Pokemon pokemon : pokemons){
+            if(pokemon.getHeight()/10 >= Double.valueOf(alturaPoke))
+            {
+                pokemonsNombre.add(pokemon);
+            }
+        }
+        return pokemonsNombre;
     }
 
 }

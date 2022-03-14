@@ -8,7 +8,7 @@
     >
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="140dp"
         android:layout_gravity="fill"
         android:layout_margin="10dp"
         app:cardCornerRadius="15dp"
@@ -24,7 +24,7 @@
             <ImageView
                 android:id="@+id/imgPoke"
                 android:layout_width="match_parent"
-                android:layout_height="119dp" />
+                android:layout_height="100dp" />
 
             <TextView
                 android:id="@+id/txtNombrePoke"
@@ -34,9 +34,6 @@
                 android:text="Nombre Pokemon"
                 android:textSize="15dp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

@@ -27,21 +27,55 @@
 
     </LinearLayout>
 
-    <Space
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="15dp" />
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_layout"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/txtAlturaPokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:drawableLeft="@drawable/search"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Mayores de X Altura"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <Button
+            android:id="@+id/btnBuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/border_layout_rojo"
+            android:text="Buscar" />
+
+        <Button
+            android:id="@+id/btnQuitar"
+            android:layout_width="34dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border_layout"
+            android:drawableStart="@drawable/quitar"
+            android:gravity="center"
+            android:padding="14dp" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_height="wrap_content">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="16dp" />
+        android:layout_height="14dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,7 +91,7 @@
             android:layout_marginRight="50dp"
             android:layout_weight="1"
             android:background="@drawable/border_layout_rojo"
-            android:drawableLeft="@drawable/pikachu"
+            android:drawableLeft="@drawable/meow32"
             android:padding="10dp"
             android:text="Anterior"
             android:visibility="invisible" />
@@ -65,12 +99,12 @@
         <Button
             android:id="@+id/btnSiguiente"
             android:layout_width="149dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="left"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/border_layout_rojo"
-            android:drawableRight="@drawable/pikachu"
+            android:drawableRight="@drawable/psyduck32"
             android:padding="10dp"
             android:text="Siguiente" />
     </LinearLayout>
