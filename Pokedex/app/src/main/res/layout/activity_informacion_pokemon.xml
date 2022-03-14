@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="NOMBRE POKEMON"
+            android:text="@string/nombre_pokemon"
             android:textStyle="bold"
             android:textSize="28dp" />
 
@@ -70,10 +70,6 @@
                     android:layout_gravity="center"/>
             </LinearLayout>
 
-            <!--
-
-                -->
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="17dp" />
@@ -90,7 +86,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="20dp"
-                    android:text="Altura"
+                    android:text="@string/altura"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
 
@@ -109,7 +105,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textSize="20dp"
-                    android:text="Peso"
+                    android:text="@string/peso"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
 
@@ -141,7 +137,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/huevo"
                     android:gravity="center"
-                    android:text="Tipo"
+                    android:text="@string/tipo"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
@@ -174,7 +170,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/stats64"
                     android:gravity="center"
-                    android:text="Habilidades"
+                    android:text="@string/habilidades"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold" />
@@ -185,10 +181,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
-
-
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
@@ -210,7 +204,7 @@
                     android:background="@drawable/border_layout_rojo"
                     android:drawableLeft="@drawable/pokeball32"
                     android:paddingLeft="20dp"
-                    android:text="STATS DE COMBATE" />
+                    android:text="@string/stats" />
 
                 <Button
                     android:id="@+id/btnVolver"
@@ -219,7 +213,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/border_layout"
                     android:drawableLeft="@drawable/volver32"
-                    android:text="Volver"
+                    android:text="@string/volver"
                     android:textColor="@color/black"/>
             </LinearLayout>
 

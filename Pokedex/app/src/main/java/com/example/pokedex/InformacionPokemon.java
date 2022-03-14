@@ -51,7 +51,6 @@ public class InformacionPokemon extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void inicializarComponentes(){

@@ -74,7 +74,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
         }
         @SuppressLint("ResourceType")
         public void asignarDatos(Pokemon r) {
-            txtNombrePoke.setText(r.getName().toUpperCase());
+            txtNombrePoke.setText(r.getName());
             //Descargar la imagen y añadirla al imageview del pokemon
 
             DescargarImagenAsyncTask tImagen = new DescargarImagenAsyncTask(imgPoke);

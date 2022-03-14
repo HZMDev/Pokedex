@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="NOMBRE POKEMON"
+            android:text="@string/nombre_pokemon"
             android:textStyle="bold"
             android:textSize="28dp" />
 
@@ -83,10 +83,11 @@
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/estrella"
                 android:gravity="center"
-                android:text="Vida"
+                android:text="@string/vida"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                />
 
             <TextView
                 android:id="@+id/txtVida"
@@ -104,7 +105,7 @@
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/estrella"
                 android:gravity="center"
-                android:text="Velocidad"
+                android:text="@string/velocidad"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
@@ -135,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Ataque"
+                android:text="@string/ataque"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:drawableLeft="@drawable/estrella"
@@ -160,7 +161,7 @@
                 android:textStyle="bold"
                 android:drawableLeft="@drawable/estrella"
                 android:gravity="center"
-                android:text="Defensa"
+                android:text="@string/defensa"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
@@ -205,7 +206,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Ataque  Especial"
+                    android:text="@string/ataque_especial"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
@@ -256,7 +257,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Defensa Especial"
+                    android:text="@string/defensa_especial"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="20dp"/>
@@ -296,7 +297,7 @@
         android:layout_marginRight="15dp"
         android:background="@drawable/border_layout"
         android:drawableLeft="@drawable/volver32"
-        android:text="Volver"
+        android:text="@string/volver"
         android:textColor="@color/black" />
 
 </LinearLayout>

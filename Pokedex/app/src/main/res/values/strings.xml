@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="activity_Pokemon">Información del Pokemon</string>
+    <string name="activity_Stats">Stats del Pokemon</string>
+    <string name="nombre_pokemon">NOMBRE POKEMON</string>
+    <string name="altura">Altura</string>
+    <string name="peso">Peso</string>
+    <string name="tipo">Tipo</string>
+    <string name="habilidades">Habilidades</string>
+    <string name="vida">Vida</string>
+    <string name="velocidad">Velocidad</string>
+    <string name="ataque">Ataque</string>
+    <string name="defensa">Defensa</string>
+    <string name="ataque_especial">Ataque Especial</string>
+    <string name="defensa_especial">Defensa Especial</string>
+    <string name="volver">Volver</string>
+    <string name="stats">STATS DE COMBATE</string>
+    <string name="hint_busqueda">Mayor que X Altura</string>
+    <string name="buscar">BUSCAR</string>
+    <string name="siguiente">SIGUIENTE</string>
+    <string name="anterior">ANTERIOR</string>
 </resources>

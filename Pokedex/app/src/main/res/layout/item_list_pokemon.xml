@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Nombre Pokemon"
+                android:text="@string/nombre_pokemon"
                 android:textSize="15dp" />
 
         </LinearLayout>

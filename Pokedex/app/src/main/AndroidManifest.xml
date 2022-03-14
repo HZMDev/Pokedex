@@ -12,10 +12,12 @@
         android:theme="@style/Theme.Pokedex">
         <activity
             android:name=".StatsPokemon"
-            android:exported="true" />
+            android:exported="true"
+            android:label="@string/activity_Stats"/>
         <activity
             android:name=".InformacionPokemon"
-            android:exported="true" />
+            android:exported="true"
+            android:label="@string/activity_Pokemon"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -42,7 +42,7 @@
             android:drawableLeft="@drawable/search"
             android:ems="10"
             android:gravity="center"
-            android:hint="Mayores de X Altura"
+            android:hint="@string/hint_busqueda"
             android:inputType="textPersonName"
             android:textColor="@color/black"
             android:textColorHint="@color/black" />
@@ -53,7 +53,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:background="@drawable/border_layout_rojo"
-            android:text="Buscar" />
+            android:text="@string/buscar" />
 
         <Button
             android:id="@+id/btnQuitar"
@@ -93,7 +93,7 @@
             android:background="@drawable/border_layout_rojo"
             android:drawableLeft="@drawable/meow32"
             android:padding="10dp"
-            android:text="Anterior"
+            android:text="@string/anterior"
             android:visibility="invisible" />
 
         <Button
@@ -106,7 +106,7 @@
             android:background="@drawable/border_layout_rojo"
             android:drawableRight="@drawable/psyduck32"
             android:padding="10dp"
-            android:text="Siguiente" />
+            android:text="@string/siguiente" />
     </LinearLayout>
 
 </LinearLayout>
