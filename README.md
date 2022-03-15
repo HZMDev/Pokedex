@@ -10,6 +10,8 @@ Los datos se obtienen mediante una conexion con la API REST de Pokemon: pokeapi.
 Desarrollada por Eduardo Delgado a Marzo de 2022.
 
 ```
+Target Device Phone
+Target Screen Size >= 6 inch
 Min SDK 22
 ```
 - Pokedex General
