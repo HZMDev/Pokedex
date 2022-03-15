@@ -17,8 +17,7 @@ import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 import cz.msebera.android.httpclient.util.EntityUtils;
 
-//doInBackground, onProgressUpdate y onPostExecute
-//1.- Doinbackground 2.- ProgressUpdate 3.-Al acabar
+//1.- DoInBackground 2.- ProgressUpdate 3.- onPostExecute
 public class ObtenerPokemonsAsyncTask extends AsyncTask<String, Void, LinkedList<Pokemon>> {
 
     private LinkedList<Pokemon> pokemons;
@@ -45,10 +44,6 @@ public class ObtenerPokemonsAsyncTask extends AsyncTask<String, Void, LinkedList
         return pokemonsApi;
     }
 
-    public void setPokemonsApi(Pokemons pokemonsApi) {
-        this.pokemonsApi = pokemonsApi;
-    }
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -56,13 +51,17 @@ public class ObtenerPokemonsAsyncTask extends AsyncTask<String, Void, LinkedList
 
     @Override
     protected LinkedList<Pokemon> doInBackground(String... strings) {
+
         HttpClient httpClient = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet(
                 this.url);
                 httpGet.setHeader("content-type", "application/json");
+
         try {
             HttpResponse resp = httpClient.execute(httpGet);
             String respStr = EntityUtils.toString(resp.getEntity());
+
+            //Se crea el objeto GSON que nos permitira parsear el JSON a Objetos
             Gson gson = new GsonBuilder().create();
 
             pokemonsApi = gson.fromJson(respStr, Pokemons.class);
@@ -79,7 +78,7 @@ public class ObtenerPokemonsAsyncTask extends AsyncTask<String, Void, LinkedList
                 resp = httpClient.execute(httpGet);
                 respStr = EntityUtils.toString(resp.getEntity());
 
-                //Tenemos el pokemon
+                //Tenemos el pokemon ya parseado
                 Pokemon pokemon = gson.fromJson(respStr, Pokemon.class);
 
                 //Añado a la lista

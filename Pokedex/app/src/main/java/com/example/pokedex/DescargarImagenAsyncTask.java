@@ -42,26 +42,33 @@ public class DescargarImagenAsyncTask extends AsyncTask<String, Void, Bitmap> {
         super.onPostExecute(bitmap);
         img.setImageBitmap(bitmap);
         //Log.v("INF", "termino la descarga");
-
     }
 
+    /***
+     * Realiza la descarga de la imagen pasando su url mediante una conexion HTTP y obtiene el BitMap
+     * @param baseUrl Url de la imagen
+     * @return
+     */
     private Bitmap descargaImagen(String baseUrl) {
         Bitmap miBitmap = null;
         try {
             //Se define el objeto URL que sirve para localizar el recurso
             URL url = new URL(baseUrl);
-            //Se crea y configura un objeto de conexión HttpURLConnection
+
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            //Vamos a usar la conexión para leer datos
+            //Usamos la conexión para leer datos
             connection.setDoInput(true);
-            //Realiza la petición del recurso (conecta)
             connection.connect();
-            //Recibe la respuesta de la petición en un flujo InputStream
+
+            //Recibe la respuesta de la petición en un stream
             InputStream input = connection.getInputStream();
+
             //Decodifica o transforma el InputStream a un objeto BitMap
             miBitmap = BitmapFactory.decodeStream(input);
+
             //Si quisiéramos escalar el bitmap para que no ocupe tanto en memoria
             //Bitmap miBitmapEsc = Bitmap.createScaledBitmap(miBitmap,200,200,true);
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

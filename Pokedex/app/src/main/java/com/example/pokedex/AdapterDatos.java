@@ -19,6 +19,7 @@ import java.util.LinkedList;
 import java.util.Locale;
 
 public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDatos> implements View.OnClickListener {
+
     private LinkedList<Pokemon> listDatos;
     private View.OnClickListener listener;
 
@@ -74,8 +75,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
         }
         @SuppressLint("ResourceType")
         public void asignarDatos(Pokemon r) {
-            txtNombrePoke.setText(r.getName());
-            //Descargar la imagen y añadirla al imageview del pokemon
+            txtNombrePoke.setText(r.getName().toUpperCase());
 
             DescargarImagenAsyncTask tImagen = new DescargarImagenAsyncTask(imgPoke);
             tImagen.execute(r.getSprites().getFrontDefault());//URL de la imagen pequeña

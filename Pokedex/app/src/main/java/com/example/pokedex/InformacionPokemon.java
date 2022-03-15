@@ -21,6 +21,7 @@ public class InformacionPokemon extends AppCompatActivity {
     private TextView txtNombre,txtAltura, txtPeso, txtTipos, txtHabilidades;
     private ImageView imagenPokemon;
     private Button btnVolver, btnStats;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,9 @@ public class InformacionPokemon extends AppCompatActivity {
 
     }
 
+    /***
+     * Inicializa los componentes
+     */
     private void inicializarComponentes(){
         txtNombre = findViewById(R.id.txtNombrePokemon);
         txtAltura = findViewById(R.id.txtAltura);
@@ -64,6 +68,9 @@ public class InformacionPokemon extends AppCompatActivity {
         txtHabilidades = findViewById(R.id.txtHabilidades);
     }
 
+    /***
+     * Carga los datos del pokemon a los componentes de la vista
+     */
     private void cargarDatos(){
         txtNombre.setText(pokemon.getName().toUpperCase());
         txtAltura.setText(pokemon.getHeight()/10+" m");

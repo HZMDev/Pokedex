@@ -17,7 +17,10 @@ public class StatsPokemon extends AppCompatActivity {
     private Pokemon pokemon;
     private Button btnVolver;
     private ImageView imgPokemon, imgPokemonShiny;
-    private TextView txtNombrePokemon, txtVida, txtVelocidad, txtAtaque, txtDefensa, txtAtaqueEspecial, txtDefensaEspecial;
+    private TextView txtNombrePokemon;
+    private TextView txtVida, txtVelocidad, txtAtaque, txtDefensa;
+    private TextView txtAtaqueEspecial, txtDefensaEspecial;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,9 @@ public class StatsPokemon extends AppCompatActivity {
         });
     }
 
+    /***
+     * Inicializa los componentes de la vista
+     */
     private void inicializarComponentes(){
         Intent i = getIntent();
         pokemon = (Pokemon) i.getExtras().get("pokemon");
@@ -64,10 +70,13 @@ public class StatsPokemon extends AppCompatActivity {
         btnVolver = findViewById(R.id.btnVolver);
     }
 
+    /***
+     * Carga los stats de combate del pokemon
+     */
     private void cargarStats(){
         txtNombrePokemon.setText(pokemon.getName().toUpperCase());
 
-        //Siempre el orden es ->  vida, ataque, defensa, ataque especial, defensa especial, velocidad
+        //Cargo los stats a los componentes de la vista
         txtVida.setText(pokemon.getStats().get(0).getBaseStat().toString());
         txtAtaque.setText(pokemon.getStats().get(1).getBaseStat().toString());
         txtDefensa.setText(pokemon.getStats().get(2).getBaseStat().toString());
@@ -75,12 +84,11 @@ public class StatsPokemon extends AppCompatActivity {
         txtDefensaEspecial.setText(pokemon.getStats().get(4).getBaseStat().toString());
         txtVelocidad.setText(pokemon.getStats().get(5).getBaseStat().toString());
 
-
-
+        //Descargo las imagenes que se van a mostrar
         DescargarImagenAsyncTask tImagen = new DescargarImagenAsyncTask(imgPokemon);
-        tImagen.execute(pokemon.getSprites().getOther().getHome().getFrontDefault());//URL de la imagen
+        tImagen.execute(pokemon.getSprites().getOther().getHome().getFrontDefault()); //URL de la imagen
 
         DescargarImagenAsyncTask tImagenHembra = new DescargarImagenAsyncTask(imgPokemonShiny);
-        tImagenHembra.execute(pokemon.getSprites().getOther().getHome().getFrontShiny());//URL de la imagen
+        tImagenHembra.execute(pokemon.getSprites().getOther().getHome().getFrontShiny()); //URL de la imagen
     }
 }

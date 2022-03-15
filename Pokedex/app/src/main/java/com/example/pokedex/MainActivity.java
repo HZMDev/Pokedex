@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,10 +23,10 @@ public class MainActivity extends AppCompatActivity{
 
     private RecyclerView recycler;
     private LinkedList<Pokemon> pokemons;
-    private Button btnSiguiente, btnAnterior, btnQuitar, btnBuscar;
+    private Button btnSiguiente, btnAnterior, btnQuitarFiltro, btnBuscar;
     private Pokemons pokemonsAPI;
     private ObtenerPokemonsAsyncTask tareaPokemons;
-    private View.OnClickListener listener;
+    private View.OnClickListener listenerRecyclerView;
 
     private EditText etAlturaPokemon;
 
@@ -43,9 +44,7 @@ public class MainActivity extends AppCompatActivity{
         recycler.addItemDecoration(dividerItemDecoration);
 
         cargarDatosLista();
-        AdapterDatos adapterDatos = new AdapterDatos(pokemons);
-
-         listener = new View.OnClickListener() {
+        listenerRecyclerView = new View.OnClickListener() {
             public void onClick(View view) {
                 //Recupero el pokemon pulsado e inicio una nueva activity con su informacion
                 Pokemon pokemonSeleccionado = pokemons.get(recycler.getChildAdapterPosition(view));
@@ -56,9 +55,8 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(i);
             }
         };
-        adapterDatos.setOnClickListener(listener);
 
-        recycler.setAdapter(adapterDatos);
+        mostrarPokemons(pokemons);
 
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,17 +71,11 @@ public class MainActivity extends AppCompatActivity{
                     return;
                 }
 
-                tareaPokemons = new ObtenerPokemonsAsyncTask(pokemons, pokemonsAPI, tareaPokemons.getPokemonsApi().getNext());
-                tareaPokemons.execute();
+                cargarDatosLista(tareaPokemons.getPokemonsApi().getNext());
 
-                AdapterDatos adapterDatos = new AdapterDatos(pokemons);
-
-                adapterDatos.setOnClickListener(listener);
-
-                recycler.setAdapter(adapterDatos);
+                mostrarPokemons(pokemons);
 
                 btnAnterior.setVisibility(View.VISIBLE);
-
             }
         });
 
@@ -96,19 +88,12 @@ public class MainActivity extends AppCompatActivity{
                 //Si no hay anterior, se pone invisible el boton
                 if (tareaPokemons.getPokemonsApi().getPrevious() == null){
                     btnAnterior.setVisibility(View.INVISIBLE);
-                    tareaPokemons = new ObtenerPokemonsAsyncTask(pokemons, pokemonsAPI, tareaPokemons.getPokemonsApi().getNext());
-                    tareaPokemons.execute();
                     return;
                 }
 
-                tareaPokemons = new ObtenerPokemonsAsyncTask(pokemons, pokemonsAPI, tareaPokemons.getPokemonsApi().getPrevious().toString());
-                tareaPokemons.execute();
+                cargarDatosLista(tareaPokemons.getPokemonsApi().getPrevious().toString());
 
-                AdapterDatos adapterDatos = new AdapterDatos(pokemons);
-
-                adapterDatos.setOnClickListener(listener);
-
-                recycler.setAdapter(adapterDatos);
+                mostrarPokemons(pokemons);
 
                 btnSiguiente.setVisibility(View.VISIBLE);
             }
@@ -123,38 +108,51 @@ public class MainActivity extends AppCompatActivity{
                     return;
                 }
 
-                //Busco por nombre de pokemon y lo cargo
-                AdapterDatos adapterDatos = new AdapterDatos(buscarPokemon(etAlturaPokemon.getText().toString()));
+                try {
+                    //Busco por nombre de pokemon y lo cargo
+                    mostrarPokemons(buscarPokemonsPorAltura(etAlturaPokemon.getText().toString()));
+                    btnSiguiente.setVisibility(View.INVISIBLE);
 
-                adapterDatos.setOnClickListener(listener);
-
-                recycler.setAdapter(adapterDatos);
-
-                btnSiguiente.setVisibility(View.INVISIBLE);
+                }catch(NumberFormatException ex)
+                {
+                    Toast.makeText(getApplicationContext(), "El formato es con numeros y punto '.'", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        btnQuitar.setOnClickListener(new View.OnClickListener() {
+        btnQuitarFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 etAlturaPokemon.setText("");
 
-                AdapterDatos adapterDatos = new AdapterDatos(pokemons);
-
-                adapterDatos.setOnClickListener(listener);
-
-                recycler.setAdapter(adapterDatos);
+                mostrarPokemons(pokemons);
 
                 btnSiguiente.setVisibility(View.VISIBLE);
+
+                Toast.makeText(getApplicationContext(), "Filtro quitado", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    /***
+     * Se pasa la lista de pokemons al adapter, añade su listener y le manda los datos al recycler view
+     * @param pokemons
+     */
+    private void mostrarPokemons(LinkedList<Pokemon> pokemons){
+        AdapterDatos adapterDatos = new AdapterDatos(pokemons);
+        adapterDatos.setOnClickListener(listenerRecyclerView);
+
+        recycler.setAdapter(adapterDatos);
+    }
+
+    /***
+     * Inicializa los componentes de la vista
+     */
     private void inicializarComponentes() {
         recycler = findViewById(R.id.recycler);
         btnSiguiente = findViewById(R.id.btnSiguiente);
         btnAnterior = findViewById(R.id.btnAnterior);
-        btnQuitar = findViewById(R.id.btnQuitar);
+        btnQuitarFiltro = findViewById(R.id.btnQuitar);
         btnBuscar = findViewById(R.id.btnBuscar);
         etAlturaPokemon = findViewById(R.id.txtAlturaPokemon);
 
@@ -162,6 +160,9 @@ public class MainActivity extends AppCompatActivity{
         pokemonsAPI = new Pokemons();
     }
 
+    /***
+     * Carga los pokemons de la lista
+     */
     private void cargarDatosLista() {
         tareaPokemons = new ObtenerPokemonsAsyncTask(pokemons, pokemonsAPI);
         tareaPokemons.execute();
@@ -173,13 +174,35 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    private LinkedList<Pokemon> buscarPokemon(String alturaPoke){
+    /***
+     * Carga los pokemons de la vista, pasando la url leer los datos
+     * @param moverse
+     */
+    private void cargarDatosLista(String moverse) {
+        tareaPokemons = new ObtenerPokemonsAsyncTask(pokemons, pokemonsAPI, moverse);
+        tareaPokemons.execute();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        mostrarPokemons(pokemons);
+    }
+
+    /***
+     * Permite buscar pokemons dada su altura, mayor o igual a ella
+     * @param alturaPoke
+     * @return Lista de pokemons ya filtrados por altura
+     * @throws NumberFormatException
+     */
+    private LinkedList<Pokemon> buscarPokemonsPorAltura(String alturaPoke) throws NumberFormatException{
         LinkedList<Pokemon> pokemonsNombre = new LinkedList<>();
 
         alturaPoke = alturaPoke.toLowerCase();
 
         for (Pokemon pokemon : pokemons){
-            if(pokemon.getHeight()/10 >= Double.valueOf(alturaPoke))
+            if(pokemon.getHeight()/10 >= Double.parseDouble(alturaPoke))
             {
                 pokemonsNombre.add(pokemon);
             }
